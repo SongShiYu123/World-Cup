@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,70 +9,38 @@ namespace ConsoleApp18
 {
     internal class OptionA
     {
-        public void ExecuteOptionA(ref int count, Team[] arring, Game[] match)
+        public void ExecuteOptionA(List<Team> arrings, Game[] match)
         {
-            count++;
-            //重置比赛信息A
-            for(int x = 0;x< arring.Length;x++)
+            for (int i = 0; i < arrings.Count; i++)
             {
-                arring[x].red = 0;
-                arring[x].yellow = 0;
-                arring[x].presentCount = 0;
-                arring[x].winCount = 0;
-                arring[x].lossCount = 0;
-                arring[x].drawCount = 0;
-                arring[x].finishGoalCount = 0;
-                arring[x].inputDoor = 0;
-                arring[x].fairPlayScore = 0;
-                arring[x].player1.goal = 0;
-                arring[x].player2.goal = 0;
-            }
-            for (int i = 0; i < arring.Length; i++)
-            {
-                for (int j = i + 1; j < arring.Length; j++)
+                for (int j = i + 1; j < arrings.Count; j++)
                 {
-                    match[i] = new Game(arring[i], arring[j]);
+                    match[i] = new Game(arrings[i], arrings[j]);
                     match[i].playGame();
                     match[i].winmatch();
                     match[i].playGameResult();
-                    arring[i].Cardcount();//纪录每次比赛的红牌黄牌数
-                    arring[j].Cardcount();
+                    arrings[i].Cardcount();//纪录每次比赛的红牌黄牌数
+                    arrings[j].Cardcount();
                 }
             }
+        }
+        public void ExecuteOptionA1(List<Team> arrings)
+        {
             //排序
-            for (int i = 0; i < arring.Length; i++)
+            arrings.Sort((team1, team2) =>
             {
-                Team swap;
-                for (int j = i + 1; j < arring.Length; j++)
+                int result = team2.sumCount.CompareTo(team1.sumCount);
+                if (result == 0)
                 {
-                    if (arring[i].sumCount == arring[j].sumCount)
-                    {
-                        if (arring[i].finishGoalCount < arring[j].finishGoalCount)
-                        {
-                            swap = arring[i];
-                            arring[i] = arring[j];
-                            arring[j] = swap;
-                        }
-                    }
-                    if (arring[i].sumCount < arring[j].sumCount)
-                    {
-                        swap = arring[i];
-                        arring[i] = arring[j];
-                        arring[j] = swap;
-                    }
-                    if (arring[i].sumCount == arring[j].sumCount && arring[i].finishGoalCount == arring[j].finishGoalCount)
+                    result = team2.finishGoalCount.CompareTo(team1.finishGoalCount);
+                    if (result == 0)
                     {
                         Random random = new Random();
-                        if (random.Next(1, 100) < 50)
-                        {
-                            swap = arring[i];
-                            arring[i] = arring[j];
-                            arring[j] = swap;
-                        }
+                        result = random.Next(1, 100) < 50 ? -1 : 1;
                     }
-
                 }
-            }
+                return result;
+            });
         }
     }
 }

@@ -16,7 +16,7 @@ namespace ConsoleApp18
             name = "";
             goal = 0;
         }
-        public Player(string Name,  int Goal)
+        public Player(string Name, int Goal)
         {
             name = Name;
             goal = Goal;

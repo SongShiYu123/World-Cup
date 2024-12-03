@@ -23,21 +23,6 @@ namespace ConsoleApp18
         public int sumCount { set; get; }   //总积分
         public int inputDoor { get; set; }//点球时射门次数
         public int fairPlayScore { set; get; }
-        public Team()
-        {
-            countryName = "";
-            ranking = 0;
-            yellow = 0;
-            red = 0;
-            presentCount = 0;
-            winCount = 0;
-            lossCount = 0;
-            drawCount = 0;
-            finishGoalCount = 0;
-            sumCount = 0;
-            inputDoor = 0;
-            fairPlayScore = 0;
-        }
         public Team(string Name, int Ranking)
         {
             countryName = Name;
@@ -63,10 +48,9 @@ namespace ConsoleApp18
             }
             if (random.Next(0, 100) < 75)
             {
-                yellow = yellow +1;
+                yellow = yellow + 1;
                 fairPlayScore = fairPlayScore + 1;
             }
-            Console.WriteLine($"Red: {red}, Yellow: {yellow}, FairPlayScore: {fairPlayScore}");
         }
     }
 }
