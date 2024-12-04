@@ -105,7 +105,7 @@ namespace ConsoleApp18
         public void playGameResult()
         {
             Console.WriteLine("Competition is:");
-            Console.WriteLine("{0,-20}{1,5} vs {2,-20}{3,5}", matchteam[0].countryName, matchteam[0].finishGoalCount, matchteam[1].countryName, matchteam[1].finishGoalCount);
+            Console.WriteLine("{0,-20}{1,5} vs {2,-20}{3,5}", matchteam[0].countryName, matchteam[0].finishGoalCount, matchteam[1].finishGoalCount, matchteam[1].countryName);
             Console.WriteLine("Issued cards:");
             Console.WriteLine("{0,-20}{1,5}yellow card{2,20}red card", matchteam[0].countryName, matchteam[0].yellow, matchteam[0].red);
             Console.WriteLine("{0,-20}{1,5}yellow card{2,20}red card", matchteam[1].countryName, matchteam[1].yellow, matchteam[1].red);

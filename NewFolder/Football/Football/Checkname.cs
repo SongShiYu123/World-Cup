@@ -54,7 +54,7 @@ namespace ConsoleApp18
             else
             {
                 Console.WriteLine("The {0} information you entered is incorrect, please input again", name2);
-                name1 = Console.ReadLine();
+                name2 = Console.ReadLine();
                 if (regex.IsMatch(name2) && name2.Split('-').Length == 2 && name2.Length < 20 && name2 != name1)
                 {
                     Console.WriteLine("The {0} information you entered is correct", name2);
