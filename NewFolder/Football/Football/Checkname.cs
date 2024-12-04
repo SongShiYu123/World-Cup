@@ -12,7 +12,7 @@ namespace ConsoleApp18
     {
         public string checkedname1(string name,string countryName,int number)
         {
-            Console.WriteLine("Please input player1 name");
+            Console.WriteLine("Please input {0} player{1} name",countryName,number);
             string name1 = Console.ReadLine();
             string pattern = @"^(?!-)[A-Za-z-]+(?<!-)$";
             Regex regex = new Regex(pattern);
