@@ -6,9 +6,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Football
+namespace ConsoleApp18
 {
-    internal class Checkname
+    public class Checkname
     {
         //判断第一个名字对不对
         public string checkedname1(string countryName)
