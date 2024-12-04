@@ -36,8 +36,10 @@ namespace ConsoleApp18
                     Checkname checkname = new Checkname();
                     arrings[i].player1 = new Player();
                     arrings[i].player2 = new Player();
-                    arrings[i].player1.name = checkname.checkedname1(arrings[i].countryName);
-                    arrings[i].player2.name = checkname.checkedname2(arrings[i].countryName, arrings[i].player1.name);
+                    int number = 1;
+                    arrings[i].player1.name = checkname.checkedname1(null,arrings[i].countryName,number);
+                    number = number + 1;
+                    arrings[i].player2.name = checkname.checkedname1(arrings[i].player1.name,arrings[i].countryName,number);
                     arrings[i].player1.goal = 0;
                     arrings[i].player2.goal = 0;
                 }
