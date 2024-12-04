@@ -72,7 +72,7 @@ namespace ConsoleApp18
                         case "A":
                             if (count > 0)
                             {
-                                Console.WriteLine("The information you entered is incorrect,please input again;");
+                                Console.WriteLine("The preliminaries have already been played and cannot be held again;");
                             }
                             else
                             {
@@ -90,9 +90,13 @@ namespace ConsoleApp18
                                 OptionB b = new OptionB();
                                 b.ExecuteOptionB(arrings, match);
                             }
-                            else if ((option == "B" && count == 0) || count1 > 0)
+                            else if (option == "B" && count == 0)
                             {
-                                Console.WriteLine("The information you entered is incorrect,please input again;");
+                                Console.WriteLine("Without qualifying, the final cannot be held;");
+                            }
+                            else if(count1 > 0)
+                            {
+                                Console.WriteLine("We have already finished the finals and cannot proceed to the finals again");
                             }
                             mMnu.menu();
                             break;
@@ -102,7 +106,7 @@ namespace ConsoleApp18
                                 int i = 0;
                                 while (i < arrings.Count)
                                 {
-                                    Console.WriteLine("{0,-10}{1,5}{2,15}{3,15}{4,15}{5,15}{6,15}{7,15}", arrings[i].countryName, arrings[i].presentCount, arrings[i].winCount, arrings[i].lossCount, arrings[i].drawCount, arrings[i].finishGoalCount, arrings[i].sumCount, arrings[i].fairPlayScore);
+                                    Console.WriteLine("{0,-10}{1,5}{2,15}{3,15}{4,15}{5,15}{6,15}{7,15}", arrings[i].countryName, arrings[i].presentCount, arrings[i].winCount, arrings[i].lossCount, arrings[i].drawCount, arrings[i].sumFinishGoalCount, arrings[i].sumCount, arrings[i].fairPlayScore);
                                     i++;
                                 }
                             }
@@ -111,13 +115,13 @@ namespace ConsoleApp18
                         case "D":
                             for (int i = 0; i < arrings.Count; i++)
                             {
-                                Console.WriteLine("{0,-15}{1,10}{2,10}", arrings[i].player1.name, arrings[i].countryName, arrings[i].player1.goal);
-                                Console.WriteLine("{0,-15}{1,10}{2,10}", arrings[i].player2.name, arrings[i].countryName, arrings[i].player2.goal);
+                                Console.WriteLine("{0,-15}{1,10}{2,10}", arrings[i].player1.name, arrings[i].countryName, arrings[i].player1.sumGoal);
+                                Console.WriteLine("{0,-15}{1,10}{2,10}", arrings[i].player2.name, arrings[i].countryName, arrings[i].player2.sumGoal);
                             }
                             mMnu.menu();
                             break;
                         case "E":
-                            if (count > 0)
+                            if (count > 0&&count1>0)
 
                             {
                                 Console.WriteLine("Football World Cup Winner:{0}", arrings[0].countryName);
@@ -128,7 +132,7 @@ namespace ConsoleApp18
                             }
                             else
                             {
-                                Console.WriteLine("The information you entered is incorrect, please input again;");
+                                Console.WriteLine("Not executing the preliminary and final rounds, please input again;");
                             }
                             mMnu.menu();
                             break;

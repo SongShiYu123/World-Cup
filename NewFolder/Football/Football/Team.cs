@@ -23,6 +23,7 @@ namespace ConsoleApp18
         public int sumCount { set; get; }   //总积分
         public int inputDoor { get; set; }//点球时射门次数
         public int fairPlayScore { set; get; }
+        public int sumFinishGoalCount { set; get; }
         public Team(string Name, int Ranking)
         {
             countryName = Name;
@@ -37,6 +38,7 @@ namespace ConsoleApp18
             sumCount = 0;
             inputDoor = 0;
             fairPlayScore = 0;
+            int sumFinishGoalCount = 0;
         }
         //计算每场比赛每个队伍的红牌和黄牌数
         public void Cardcount()

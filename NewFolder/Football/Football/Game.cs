@@ -29,28 +29,40 @@ namespace ConsoleApp18
                 Random random = new Random();
                 //球队1总进球数
                 matchteam[0].finishGoalCount = random.Next(0, 5 + random.Next(0, 2));
+                matchteam[0].sumFinishGoalCount = matchteam[0].sumFinishGoalCount + matchteam[0].finishGoalCount;
                 //计算第一个队伍每个球员的进球数
                 matchteam[0].player1.goal = random.Next(0, matchteam[0].finishGoalCount);
+                matchteam[0].player1.sumGoal = matchteam[0].player1.sumGoal + matchteam[0].player1.goal;
                 matchteam[0].player2.goal = matchteam[0].finishGoalCount - matchteam[0].player1.goal;
+                matchteam[0].player2.sumGoal = matchteam[0].player2.sumGoal + matchteam[0].player2.goal;
                 //球队2总进球数
                 matchteam[1].finishGoalCount = random.Next(0, 5 - (matchteam[0].ranking - matchteam[1].ranking) + random.Next(0, 2));
+                matchteam[1].sumFinishGoalCount = matchteam[1].sumFinishGoalCount + matchteam[1].finishGoalCount;
                 //计算第二个队伍每个球员的进球数
                 matchteam[1].player1.goal = random.Next(0, matchteam[1].finishGoalCount);
+                matchteam[1].player1.sumGoal = matchteam[1].player1.sumGoal + matchteam[1].player1.goal;
                 matchteam[1].player2.goal = matchteam[1].finishGoalCount - matchteam[1].player1.goal;
+                matchteam[1].player2.sumGoal = matchteam[1].player2.sumGoal + matchteam[1].player2.goal;
             }
             else
             {
                 Random random = new Random();
                 //球队2总进球数
-                matchteam[1].finishGoalCount = random.Next(0, 5 + random.Next(0, 2));
+                matchteam[1].finishGoalCount = random.Next(0, 5 + random.Next(0, 2));//每局进球数
+                matchteam[1].sumFinishGoalCount = matchteam[1].sumFinishGoalCount + matchteam[1].finishGoalCount;
                 //计算第二个队伍每个球员的进球数
                 matchteam[1].player1.goal = random.Next(0, matchteam[1].finishGoalCount);
+                matchteam[1].player1.sumGoal = matchteam[1].player1.sumGoal + matchteam[1].player1.goal;
                 matchteam[1].player2.goal = matchteam[1].finishGoalCount - matchteam[1].player1.goal;
+                matchteam[1].player2.sumGoal = matchteam[1].player2.sumGoal + matchteam[1].player2.goal;
                 //球队1总进球数
                 matchteam[0].finishGoalCount = random.Next(0, 5 - (matchteam[1].ranking - matchteam[0].ranking) + random.Next(0, 2));
+                matchteam[0].sumFinishGoalCount = matchteam[0].sumFinishGoalCount + matchteam[0].finishGoalCount;
                 //计算第一个队伍每个球员的进球数
                 matchteam[0].player1.goal = random.Next(0, matchteam[0].finishGoalCount);
+                matchteam[0].player1.sumGoal = matchteam[0].player1.sumGoal + matchteam[0].player1.goal;
                 matchteam[0].player2.goal = matchteam[0].finishGoalCount - matchteam[0].player1.goal;
+                matchteam[0].player2.sumGoal = matchteam[0].player2.sumGoal + matchteam[0].player2.goal;
             }
         }
         //判断哪个球队赢了

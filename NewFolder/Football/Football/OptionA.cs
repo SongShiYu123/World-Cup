@@ -32,7 +32,7 @@ namespace ConsoleApp18
                 int result = team2.sumCount.CompareTo(team1.sumCount);
                 if (result == 0)
                 {
-                    result = team2.finishGoalCount.CompareTo(team1.finishGoalCount);
+                    result = team2.sumFinishGoalCount.CompareTo(team1.sumFinishGoalCount);
                     if (result == 0)
                     {
                         Random random = new Random();

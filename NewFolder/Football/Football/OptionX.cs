@@ -17,19 +17,19 @@ namespace ConsoleApp18
             int max = 0;
             for (int i = 0; i < arrings.Count; i++)
             {
-                if (arrings[i].player1.goal > max)
-                    max = arrings[i].player1.goal;
-                if (arrings[i].player2.goal > max)
-                    max = arrings[i].player2.goal;
+                if (arrings[i].player1.sumGoal > max)
+                    max = arrings[i].player1.sumGoal;
+                if (arrings[i].player2.sumGoal > max)
+                    max = arrings[i].player2.sumGoal;
             }
             for (int j = 0; j < arrings.Count; j++)
             {
-                if (arrings[j].player1.goal == max)
+                if (arrings[j].player1.sumGoal == max)
                 {
                     winname = arrings[j].player1.name; //把射球数最高的成员名字赋值
                     sw.WriteLine("Golden Boot Award: {0}", winname);
                 }
-                if (arrings[j].player2.goal == max)
+                if (arrings[j].player2.sumGoal == max)
                 {
                     winname = arrings[j].player2.name;
                     sw.WriteLine("Golden Boot Award: {0}", winname);

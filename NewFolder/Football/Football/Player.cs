@@ -11,15 +11,19 @@ namespace ConsoleApp18
     {
         public string name { get; set; }//球员名字
         public int goal { get; set; }//个人进球数
+        public int sumGoal { get; set; }
         public Player()
         {
             name = "";
             goal = 0;
+            sumGoal = 0;
+            
         }
         public Player(string Name, int Goal)
         {
             name = Name;
             goal = Goal;
+            sumGoal = 0;
         }
     }
 }
