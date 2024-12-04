@@ -10,7 +10,6 @@ namespace ConsoleApp18
 {
     public class Checkname
     {
-        //判断第一个名字对不对
         public string checkedname1(string name,string countryName,int number)
         {
             Console.WriteLine("Please input player1 name");
