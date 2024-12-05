@@ -23,7 +23,6 @@ namespace ConsoleApp18
                 string line;
                 line = sr.ReadLine();
                 string[] arr = line.Split(' ');
-                ArrayList arring = new ArrayList();
                 //给每个团队的内容赋值
                 List<Team> arrings = new List<Team>();
                 for (int i = 0; i < arr.Length; i++)
@@ -151,7 +150,7 @@ namespace ConsoleApp18
                     }
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 Console.WriteLine("File path is wrong");
             }

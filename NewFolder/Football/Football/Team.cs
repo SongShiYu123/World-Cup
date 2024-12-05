@@ -38,7 +38,7 @@ namespace ConsoleApp18
             sumCount = 0;
             inputDoor = 0;
             fairPlayScore = 0;
-            int sumFinishGoalCount = 0;
+            sumFinishGoalCount = 0;
         }
         //计算每场比赛每个队伍的红牌和黄牌数
         public void Cardcount()

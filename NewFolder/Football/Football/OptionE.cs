@@ -1,6 +1,11 @@
-﻿using System;
+﻿using Football;
+using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,84 +13,88 @@ namespace ConsoleApp18
 {
     internal class OptionE
     {
+        //0 1 2 3 4 5 6 7
+        //0 1 2 3 
         public void ExecuteOptionE(List<Team> arrings)
         {
-            //输出最高射球数球员
-            arrings.Sort((team1, team2) =>
+            //输出最高射球数球员           
+            int max1 = 0;//最高射球数
+            for (int i = 0; i < arrings.Count; i++)
             {
-                int result = team1.player1.sumGoal.CompareTo(team1.player1.sumGoal.CompareTo(team2.player1.sumGoal.CompareTo(team2.player2.sumGoal)));
-                if (result == 0)
+                if (arrings[i].player1.sumGoal > max1)
                 {
-                    result = team1.sumFinishGoalCount.CompareTo(team2.sumFinishGoalCount);
+                    max1 = arrings[i].player1.sumGoal;
                 }
-                return result;
-            });
-            if (arrings[0].player1.sumGoal > arrings[0].player2.sumGoal)
-                Console.WriteLine("Golden Boot Award: {0}", arrings[0].player1.name);
-            if (arrings[0].player1.sumGoal < arrings[0].player2.sumGoal)
-            {
-                Console.WriteLine("Golden Boot Award: {0}", arrings[0].player2.name);
+                if (arrings[i].player2.sumGoal > max1)
+                {
+                    max1 = arrings[i].player2.sumGoal;
+                }
             }
-            if(arrings[0].player1.sumGoal == arrings[0].player2.sumGoal)
+            Player maxplayer = new Player();//找出最高射球数相等的球员并同时只保留sumFinishGoalCount最大的
+            int max = 0;
+            for (int i = 0; i < arrings.Count; i++)
+            {
+                if (arrings[i].player1.sumGoal == max1 && arrings[i].sumFinishGoalCount > max)
+                {
+                    maxplayer = arrings[i].player1;
+                    max = arrings[i].sumFinishGoalCount;
+                }
+                if (arrings[i].player2.sumGoal == max1 && arrings[i].sumFinishGoalCount > max)
+                {
+                    maxplayer = arrings[i].player2;
+                    max = arrings[i].sumFinishGoalCount;
+                }
+            }
+            for (int i = 0; i < arrings.Count; i++)
+            {
+                if (arrings[i].player1.sumGoal == max1 && arrings[i].sumFinishGoalCount == max && arrings[i].player2.sumGoal == max1)
                 {
                     Random random = new Random();
-                    if(random.Next(0,100)<50)
-                    {
-                        Console.WriteLine("Golden Boot Award: {0}", arrings[0].player1.name);
-                    }
+                    if (random.Next(0, 100) < 50)
+                        Console.WriteLine("Golden Boot Award: {0}", arrings[i].player1.name);
                     else
-                    {
-                        Console.WriteLine("Golden Boot Award: {0}", arrings[0].player2.name);
-                    }
+                        Console.WriteLine("Golden Boot Award: {0}", arrings[i].player2.name);
+                    break;
                 }
-            //恢复按球队积分总数排序
-            arrings.Sort((team1, team2) =>
-            {
-                int result = team2.sumCount.CompareTo(team1.sumCount);
-                if (result == 0)
+                else if (arrings[i].player1.sumGoal == max1 && arrings[i].sumFinishGoalCount == max)
                 {
-                    result = team2.sumFinishGoalCount.CompareTo(team1.sumFinishGoalCount);
-                    if (result == 0)
-                    {
-                        Random random = new Random();
-                        result = random.Next(1, 100) < 50 ? -1 : 1;
-                    }
+                    Console.WriteLine("Golden Boot Award: {0}", arrings[i].player1.name);
                 }
-                return result;
-            });
+                else if (arrings[i].player2.sumGoal == max1 && arrings[i].sumFinishGoalCount == max)
+                {
+                    Console.WriteLine("Golden Boot Award: {0}", arrings[i].player2.name);
+                }
+            }
         }
         public void ExecuteOptionE1(List<Team> arrings)
         {
             //计算最少Fairplayscore球队
-            arrings.Sort((team1, team2) =>
+            int min = arrings[0].fairPlayScore;//最小fairplay
+            for(int i = 0;i< arrings.Count;i++)
             {
-                int result = team1.fairPlayScore.CompareTo(team2.fairPlayScore);
-                if(result == 0)
+                if (arrings[i].fairPlayScore<min)
                 {
-                    result = team1.sumFinishGoalCount.CompareTo(team2.sumFinishGoalCount);
-                    Console.WriteLine("Fair Play Award:{0}", arrings[0].countryName);
+                    min = arrings[i].fairPlayScore;
                 }
-                else
-                {
-                    Console.WriteLine("Fair Play Award:{0}", arrings[0].countryName);
-                }
-                return result;
-            });
-            //恢复按球队积分总数排序
-            arrings.Sort((team1, team2) =>
+            }
+            int max = 0;//球队积分大的
+            for (int i = 0; i < arrings.Count; i++)
             {
-                int result = team2.sumCount.CompareTo(team1.sumCount);
-                if (result == 0)
+                if (arrings[i].fairPlayScore == min && arrings[i].sumFinishGoalCount>max)
                 {
-                    result = team2.sumFinishGoalCount.CompareTo(team1.sumFinishGoalCount);
-                    if (result == 0)
-                    {
-                        Random random = new Random();
-                        result = random.Next(1, 100) < 50 ? -1 : 1;
-                    }
+                    max = arrings[i].sumFinishGoalCount; 
                 }
-                return result;
-            });
+            }
+            List<Team> arring = new List<Team>();
+            for (int i = 0; i < arrings.Count; i++)//判断会不会有多个符合条件的
+            {
+                if (arrings[i].fairPlayScore == min && arrings[i].sumFinishGoalCount == max)
+                {
+                    arring.Add(arrings[i]);
+                }
+            }
+            Random random = new Random();
+            Console.WriteLine("Fair Play Award:{0}", arring[random.Next(0,arring.Count)].countryName);           
         }
     }
 }
