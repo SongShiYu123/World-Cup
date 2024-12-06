@@ -90,27 +90,51 @@ namespace ConsoleApp18
         }
         public void playPenaltyShootOut()
         {
+            Console.WriteLine("The penalty shootout begins to run:");
             Random random = new Random();
             for (int i = 0; i < 5; i++)
             {
                 if (random.Next(0, 100) > 50)  //模拟进球概率为50%
+                {
                     matchteam[0].inputDoor++;
+                    Console.WriteLine("{0} scored {1} penalty kick", matchteam[0].countryName, i);
+                }
+                else
+                {
+                    Console.WriteLine("{0} missed penalty kick {1}", matchteam[0].countryName, i);
+                }
             }
             for (int i = 0; i < 5; i++)
             {
                 if (random.Next(0, 100) > 50)  //模拟进球概率为50%
+                {
                     matchteam[1].inputDoor++;
+                    Console.WriteLine("{0} scored {1} penalty kick", matchteam[1].countryName, i);
+                }
+                else
+                {
+                    Console.WriteLine("{0} missed penalty kick {1}", matchteam[1].countryName, i);
+                }
             }
+            int count = 0;
             while (matchteam[0].inputDoor == matchteam[1].inputDoor)
             {
+                Console.Write("First round:");
                 if (random.Next(0, 100) > 50)
                 {
+                    Console.Write("{0} scored {1} penalty kick", matchteam[0].countryName, count);
                     matchteam[0].inputDoor++;
                 }
                 else if (random.Next(0, 100) > 50)
                 {
                     matchteam[1].inputDoor++;
+                    Console.WriteLine("{0} scored {1} penalty kick", matchteam[0].countryName, count);
                 }
+                if(matchteam[0].inputDoor> matchteam[1].inputDoor)
+                {
+                    Console.Write("{0} scored {1} penalty kick,{3} missed penalty kick {4}", matchteam[0].countryName, count, matchteam[1].countryName,);
+                }
+                count++;
             }
         }
         //展示结果
