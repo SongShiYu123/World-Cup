@@ -1,0 +1,6 @@
+ZehaoSun,1,cornering,true,0
+SongsongXie,2,overtaking,true,0
+RuoxinSun,5,cornering,true,0
+BlusLee,3,breaking,true,0
+Andrew,5,overtaking,true,0
+YuhanDing,4,breaking,true,0
